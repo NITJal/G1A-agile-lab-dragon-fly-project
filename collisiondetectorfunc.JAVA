@@ -1,4 +1,26 @@
-private void collisionHelper(Rectangle r1, Rectangle r2, BufferedImage b1, BufferedImage b2) {
+
+	private void collisionDetection(BottomPipe bp1, BottomPipe bp2, TopPipe tp1, TopPipe tp2, Bird bird) {
+		collisionHelper(bird.getRectangle(), bp1.getRectangle(), bird.getBI(), bp1.getBI());
+		collisionHelper(bird.getRectangle(), bp2.getRectangle(), bird.getBI(), bp2.getBI());
+		collisionHelper(bird.getRectangle(), tp1.getRectangle(), bird.getBI(), tp1.getBI());
+		collisionHelper(bird.getRectangle(), tp2.getRectangle(), bird.getBI(), tp2.getBI());
+
+		if (bird.getY() + BIRD_HEIGHT > SCREEN_HEIGHT * 7 / 8) { // ground
+																	// detection
+			play("sfx_hit");
+			play("sfx_die");
+			pgs.sendText("Game Over");
+			loopVar = false;
+			gamePlay = false; // game has ended
+		}
+		else
+		{
+			
+			//{play("sfx_wing");}
+		}
+	}
+
+	private void collisionHelper(Rectangle r1, Rectangle r2, BufferedImage b1, BufferedImage b2) {
 		if (r1.intersects(r2)) {
 			Rectangle r = r1.intersection(r2);
 
@@ -27,8 +49,6 @@ private void collisionHelper(Rectangle r1, Rectangle r2, BufferedImage b1, Buffe
 
 						play("sfx_hit");
 						play("sfx_die");
-						
-						//THESE ARE SOUND EFFECTS TO BE DISPLAYED ON COLLISION AND DEATH.
 						pgs.sendText("Game Over");
 						loopVar = false; // stop the game loop
 						gamePlay = false; // game has ended
