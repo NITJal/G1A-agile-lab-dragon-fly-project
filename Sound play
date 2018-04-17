@@ -1,0 +1,22 @@
+/* import sound.wav file from 
+*
+* https://www.sounds-resource.com/mobile/flappybird/sound/5309/
+*
+*/
+
+
+//add sounds to the action performed
+public void play(String name) {
+		try {
+			File file = new File(name + ".wav");
+			Clip clip = AudioSystem.getClip();
+			clip.open(AudioSystem.getAudioInputStream(file));
+			clip.start();
+			// Thread.sleep(clip.getMicrosecondLength());
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+	}
+  
+  
+  
