@@ -11,7 +11,10 @@ public class Dragon {
 		dragonFly = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("resources/blue_bird.png"));
 		scaleDragon(initialWidth, initialHeight);
 	}
-	
+	//scale dragon
+	public void scaleDragon(int width, int height) {
+		dragonFly = dragonFly.getScaledInstance(width, height, Image.SCALE_SMOOTH);		
+	}
 	public Image getDragon() {
 		return dragonFly;
 	}
@@ -31,6 +34,7 @@ public class Dragon {
 			return -1;
 		}
 	}
+	//set n get coordinates
 	public void setX(int x) {
 		xLoc = x;
 	}
@@ -45,5 +49,20 @@ public class Dragon {
 	public int getY() {
 		return yLoc;
 	}
-	
+	//outlining of dragon
+	public Rectangle getRectangle() {
+		return (new Rectangle(xLoc, yLoc, dragonFly.getWidth(null), dragonFly.getHeight(null)));
+	}
+	//buffered image for dragon
+	public BufferedImage getBI() {
+		BufferedImage bi = new BufferedImage(dragonFly.getWidth(null), dragonFly.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+		Graphics g = bi.getGraphics();
+		g.drawImage(dragonFly, 0, 0, null);
+		g.dispose();
+		return bi;
+	}
 }
+
+
+/
+	
