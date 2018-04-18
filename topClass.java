@@ -61,18 +61,10 @@ public class TopClass implements ActionListener, KeyListener {
 	private static PlayGameScreen pgs; // panel that has the moving background
 										// at the start of the game
 
-	/**
-	 * Default constructor
-	 */
-	public TopClass() {
+	
+	public TopClass() {}
 
-	}
-
-	/**
-	 * Main executable method invoked when running .jar file
-	 *
-	 * @param args
-	 */
+	
 	public static void main(String[] args) {
 		// build the GUI on a new thread
 
@@ -80,8 +72,7 @@ public class TopClass implements ActionListener, KeyListener {
 			public void run() {
 				tc.buildFrame();
 
-				// create a new thread to keep the GUI responsive while the game
-				// runs
+				
 				Thread t = new Thread() {
 					public void run() {
 						tc.gameScreen(true);
@@ -153,13 +144,10 @@ public class TopClass implements ActionListener, KeyListener {
 		// must add last to ensure button's visibility
 		pgs = new PlayGameScreen(SCREEN_WIDTH, SCREEN_HEIGHT, true); // true -->
 																		// we
-																		// want
-																		// pgs
-																		// to be
+		
 																		// the
 																		// splash
-																		// screen
-		topPanel.add(pgs);
+																		// screetopPanel.add(pgs);
 
 		return topPanel;
 	}
@@ -190,9 +178,9 @@ public class TopClass implements ActionListener, KeyListener {
 
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE && gamePlay == true && released == true) {
-			// update a boolean that's tested in game loop to move the bird
+			// update a boolean that's tested in game loop to move the dragon
 			if (birdThrust) { // need this to register the button press and
-								// reset the birdYTracker before the jump
+								// reset the birdYTracker for dragon before the jump
 								// operation completes
 				birdFired = true;
 			}
@@ -200,7 +188,7 @@ public class TopClass implements ActionListener, KeyListener {
 			released = false;
 		} else if (e.getKeyCode() == KeyEvent.VK_B && gamePlay == false) {
 			birdYTracker = SCREEN_HEIGHT / 2 - BIRD_HEIGHT; // need to reset the
-															// bird's starting
+															// dragon's's starting
 															// height
 			birdThrust = false; // if user presses SPACE before collision and a
 								// collision occurs before reaching max height,
@@ -399,11 +387,6 @@ public class TopClass implements ActionListener, KeyListener {
 		}
 	}
 
-	/**
-	 * Calculates a random int for the bottom pipe's placement
-	 *
-	 * @return int
-	 */
 	private int bottomPipeLoc() {
 		int temp = 0;
 		// iterate until temp is a value that allows both pipes to be onscreen
@@ -413,16 +396,7 @@ public class TopClass implements ActionListener, KeyListener {
 		return temp;
 	}
 
-	/**
-	 * Method that checks whether the score needs to be updated
-	 *
-	 * @param bp1
-	 *            First BottomPipe object
-	 * @param bp2
-	 *            Second BottomPipe object
-	 * @param bird
-	 *            Bird object
-	 */
+	
 	private void updateScore(BottomPipe bp1, BottomPipe bp2, Bird bird) {
 		if (bp1.getX() + PIPE_WIDTH < bird.getX() && bp1.getX() + PIPE_WIDTH > bird.getX() - X_MOVEMENT_DIFFERENCE) {
 			pgs.incrementJump();
@@ -433,20 +407,7 @@ public class TopClass implements ActionListener, KeyListener {
 		}
 	}
 
-	/**
-	 * Method to test whether a collision has occurred
-	 *
-	 * @param bp1
-	 *            First BottomPipe object
-	 * @param bp2
-	 *            Second BottomPipe object
-	 * @param tp1
-	 *            First TopPipe object
-	 * @param tp2
-	 *            Second TopPipe object
-	 * @param bird
-	 *            Bird object
-	 */
+	
 	private void collisionDetection(BottomPipe bp1, BottomPipe bp2, TopPipe tp1, TopPipe tp2, Bird bird) {
 		collisionHelper(bird.getRectangle(), bp1.getRectangle(), bird.getBI(), bp1.getBI());
 		collisionHelper(bird.getRectangle(), bp2.getRectangle(), bird.getBI(), bp2.getBI());
@@ -470,19 +431,7 @@ public class TopClass implements ActionListener, KeyListener {
 		}
 	}
 
-	/**
-	 * Helper method to test the Bird object's potential collision with a pipe
-	 * object.
-	 *
-	 * @param r1
-	 *            The Bird's rectangle component
-	 * @param r2
-	 *            Collision component rectangle
-	 * @param b1
-	 *            The Bird's BufferedImage component
-	 * @param b2
-	 *            Collision component BufferedImage
-	 */
+	
 	private void collisionHelper(Rectangle r1, Rectangle r2, BufferedImage b1, BufferedImage b2) {
 		if (r1.intersects(r2)) {
 			Rectangle r = r1.intersection(r2);
