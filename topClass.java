@@ -1,5 +1,4 @@
 import java.awt.Dimension;
-
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Color;
@@ -12,7 +11,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.*;
@@ -142,14 +140,7 @@ public class TopClass implements ActionListener, KeyListener {
 		topPanel.add(startGame1);*/
 
 		// must add last to ensure button's visibility
-		pgs = new PlayGameScreen(SCREEN_WIDTH, SCREEN_HEIGHT, true); // true -->
-																		// we
-		
-																		// the
-																		// splash
-																		// screetopPanel.add(pgs);
-
-		return topPanel;
+		pgs = new PlayGameScreen(SCREEN_WIDTH, SCREEN_HEIGHT, true);return topPanel;
 	}
 
 	/**
@@ -427,7 +418,7 @@ public class TopClass implements ActionListener, KeyListener {
 		else
 		{
 			
-			//{play("sfx_wing");}
+			//{play("sfx_wing"); // if you want sound for dragon's wings  throughout}
 		}
 	}
 
