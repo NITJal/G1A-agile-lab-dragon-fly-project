@@ -20,16 +20,23 @@ public class PlayGameScreen extends JPanel {
 	private TopPipe tp1, tp2;
 	private Bird bird;
 
+	/**
+	 * Default constructor for the PlayGameScreen class
+	 */
 	public PlayGameScreen(int screenWidth, int screenHeight, boolean isSplash) {
 		this.screenWidth = screenWidth;
 		this.screenHeight = screenHeight;
 		this.isSplash = isSplash;
 	}
-	//Painting methods
+	
+	/**
+	 * Manually control what's drawn on this JPanel by calling the paintComponent method
+	 * with a graphics object and painting using that object
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		g.setColor(new Color(89, 81, 247)); //color for the blue sky
+		g.setColor(new Color(255,255,255)); //color for the blue sky
 		g.fillRect(0, 0, screenWidth, screenHeight*7/8); //create the sky rectangle
 		g.setColor(new Color(147, 136, 9)); //brown color for ground
 		g.fillRect(0, screenHeight*7/8, screenWidth, screenHeight/8); //create the ground rectangle
@@ -69,32 +76,54 @@ public class PlayGameScreen extends JPanel {
 		}
 	}
 	
-	//Parsing methods
+	/**
+	 * Parsing method for PlayGameScreen's global BottomPipe variables
+	 * @param bp1 The first BottomPipe
+	 * @param bp2 The second BottomPipe
+	 */
 	public void setBottomPipe(BottomPipe bp1, BottomPipe bp2) {
 		this.bp1 = bp1;
 		this.bp2 = bp2;
 	}
 	
+	/**
+	 * Parsing method for PlayGameScreen's global TopPipe variables
+	 * @param tp1 The first TopPipe
+	 * @param tp2 The second TopPipe
+	 */
 	public void setTopPipe(TopPipe tp1, TopPipe tp2) {
 		this.tp1 = tp1;
 		this.tp2 = tp2;
 	}
 	
-	
+	/**
+	 * Parsing method for PlayGameScreen's global Bird variable
+	 * @param bird The Bird object
+	 */
 	public void setBird(Bird bird) {
 		this.bird = bird;
 	}
 	
-	//Increment score
+	/**
+	 * Method called to invoke an increase in the variable tracking the current
+	 * jump score
+	 */
 	public void incrementJump() {
 		successfulJumps++;
 	}
 	
-	//Return score
+	/**
+	 * Method called to return the current jump score
+	 * @return
+	 */
 	public int getScore() {
 		return successfulJumps;
 	}
 	
+	/**
+	 * Method called to parse a message onto the screen
+	 * @param message The message to parse
+	 */
 	public void sendText(String message) {
 		this.message = message;
 	}
