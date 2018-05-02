@@ -1,6 +1,6 @@
 public interface myvariables {
     String path="jdbc:mysql://localhost/";
-    String place="delivery";
+    String place="dragonfly";
     String username="root";
     String password="";
 }
